@@ -1,0 +1,7 @@
+#include <stdio.h>
+
+int main()
+{
+    printf("------ Questão 18 ------\n");
+    return 0;
+}

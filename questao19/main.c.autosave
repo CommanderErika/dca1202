@@ -1,0 +1,12 @@
+#include <stdio.h>
+
+float multiC(float *a, float *b, float *c, int la, int  lc, int cb){
+    
+}
+
+int main()
+{
+    printf("------ Questão 19 ------\n");
+    
+    return 0;
+}
