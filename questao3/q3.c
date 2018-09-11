@@ -3,6 +3,7 @@
 int main()
 {
     printf("------ Question 3 ------\n");
+    printf("");
     printf("-->When we dont put the * before 'j' in the example above, 'j' will return the address.\n");
     printf("-->But notice that 'j' has a different address compared to 'i'.\n");
     printf("-->Thus, *j will point to the address which is stored in itself.\n");

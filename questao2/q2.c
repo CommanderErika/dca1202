@@ -3,8 +3,7 @@
 int main()
 {
     printf("-------- Questão 2 --------\n");
-    printf("-->Remember that if we use & it means that the address of \nthe variable is returned.\n");
-    printf("-->And if we use * it means that the value in that address\n is returned.\n");
+    printf("a saida para p == &i é 1, \n valor de **&p = 3, \n valor de *p-*q = -2, e o valor de 3 - *p/(*q) + 7 = 10");
     int i=3,j=5;
     int *p, *q;
     p = &i;
