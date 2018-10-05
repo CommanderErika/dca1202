@@ -134,20 +134,34 @@ public:
         }
     }
     void rotatePolygon(float mtetha){
-        // We know that x = r*cos(theta) and y = r*sin(tetha)//
-        // Remember from Calculus, where we can describle a circle equation //
-        // r is goiing to be the distance between the points (x0,y0) e the onther one //
-        // Notice that in this function tetha is in radians //
+        // The ideia of this method basis on the matrix transformation, where we can trasnformate the points into //
+        // another coodinate system, remember from Algebra//
+        // But the transformation used here is done in the origins, so, to do that we need to translate our polygon //
+        // After the trasnlation is done, trasnaltion to the origins, we can do the transformation //
+        // Hence, at the end of the transformation, we will translate again //
         tetha = mtetha;
+        // The value that we are goning to translate is the distance between the first point and the origins //
+        float xlinha = points[0].getX();
+        float ylinha = points[0].getY();
         for(k=1;k<i;k++){
-            int r =0;
-            r = points[0].Length2Points(points[0],points[k]);
-            points[k].SetXY(r*cos(tetha),r*sin(tetha));
+            // Here is done the translation to the origins //
+            points[k].translada(-xlinha,-ylinha);
+        }
+        for(k=1;k<i;k++){
+            // Here is our matrix //
+            // |cos(tetha)  - sin(tetha) | //
+            // |sin(tetha) + cos(tehta)  | //
+            // So, i've just multiplied this matrix with the points //
+            points[k].SetXY((cos(tetha)*points[k].getX())-(sin(tetha)*points[k].getY()),(sin(tetha)*points[k].getX())+(cos(tetha)*points[k].getY()));
+        }
+        for(k=1;k<i;k++){
+            // In the end we a transaltion again //
+            points[k].translada(+xlinha,+ylinha);
         }
     }
     void printPolygon(){
         // This method prints our veterxs' polygon //
-        for(k=0;k<i;k++){
+        for(k=i;k>0;k--){
             printf("(%f,%f) -->",points[k].getX(),points[k].getY());
         }
         printf("\n");
@@ -184,8 +198,11 @@ int main()
     //Point p1(2,4),p2(5,6),p3(7,8);
     //Point spoint[]={p1,p2,p3};
     //Poligono erika(spoint,3);
-    Retangulo erika(1,1,2,1);
-    erika.rotatePolygon(M_PI/4);
+    Retangulo erika(0,0,4,3);
+    erika.rotatePolygon(M_PI/6);
+    printf("Area depois da rotação: %f\n", erika.areaPolygon());
+    erika.transladaPolygon(-3,4);
+    printf("Area depois da rotação: %f\n", erika.areaPolygon());
     erika.printPolygon();
     return 0;
 }
